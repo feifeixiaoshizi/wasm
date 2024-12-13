@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动态创建图文混排列表项示例</title>
+  <style>
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+    img {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+    .website-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .website-name {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .website-url {
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+<h2>动态创建的图文混排网站列表</h2>
+
+<ul id="website-list">
+  <!-- 列表项将通过JavaScript动态添加 -->
+</ul>
+
+<script>
+  const websites = [
+  ];
+
+  for (let i = 1; i <= 50; i++) {
+    websites.push({ name: "With Kotlin, you have the power to build applications and reuse mobile and desktop user interfaces (UIs) in your web projects through Compose Multiplatform and Kotlin/Wasm."+i, url: "https://www.google.com", imageUrl: "https://via.placeholder.com/50" })
+  }
+
+  function createWebsiteListItem(website) {
+    const listItem = document.createElement("li");
+
+    const img = document.createElement("img");
+    img.src = "drawable/1.webp";
+    img.alt = "示例图片";
+
+    const websiteInfo = document.createElement("div");
+    websiteInfo.className = "website-info";
+
+    const websiteName = document.createElement("div");
+    websiteName.className = "website-name";
+    websiteName.textContent = website.name;
+    websiteInfo.appendChild(websiteName);
+    listItem.appendChild(img);
+    listItem.appendChild(websiteInfo);
+
+    return listItem;
+  }
+
+  const websiteList = document.getElementById("website-list");
+
+  websites.forEach(website => {
+    const listItem = createWebsiteListItem(website);
+    websiteList.appendChild(listItem);
+  });
+</script>
+
+</body>
+</html>
